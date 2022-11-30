@@ -6,19 +6,19 @@
             </div>
         </div>
         <div>
-            <form action="" class="space-y-6">
+            <form @submit.prevent="submit()" class="space-y-6">
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">Email</label>
                     <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
                         <i class="ri-account-circle-line text-rose-400/90"></i>
-                        <input type="text" placeholder="Enter your username" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                        <input type="text" v-model="form.email" placeholder="Enter your username" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">password</label>
                     <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
                         <i class="ri-lock-password-line text-rose-400/90"></i>
-                        <input type="password" placeholder="Enter your username" required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                        <input type="password" v-model="form.password" placeholder="Enter your username" required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
@@ -53,11 +53,23 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { AuthStore } from '@/stores/AuthStore'
+
+    const store = AuthStore() 
   
-    
     const emit = defineEmits(['toggleAuthPage'])
     const toggleAuthPage = async() =>{
        await emit('toggleAuthPage')
     } 
+
+    const form = ref({
+        email: '',
+        password: ''
+    })
+
+    const submit = ()=>{
+        store.loginUser(form.value)
+    }
     
 </script>
