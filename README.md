@@ -33,3 +33,10 @@ npm run build
 ```sh
 npm run lint
 ```
+
+```sh
+npm install firebase
+```
+
+### Compile and Hot-Reload for Development
+
