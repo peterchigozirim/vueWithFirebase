@@ -2,23 +2,38 @@
     <div class="w-9/12 rounded mx-auto backdrop-blur-md space-y-6 bg-white/10 px-12 py-4">
         <div>
             <div class="text-3xl font-bold text-center font-FiraSans">
-                <p>Sign <span class="border-b ">In</span></p>
+                <p>Sign <span class="border-b ">Up</span></p>
             </div>
         </div>
         <div>
-            <form action="" class="space-y-6">
+            <form action="" class="space-y-4">
+                <div>
+                    <label class="font-semibold mb-2 capitalize block ml-1" for="username">Full Name</label>
+                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
+                        <i class="ri-account-circle-line text-rose-400/90"></i>
+                        <input type="text" placeholder="Enter your Full Name" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                    </div>
+                </div>
+
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">Email</label>
                     <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
                         <i class="ri-account-circle-line text-rose-400/90"></i>
-                        <input type="text" placeholder="Enter your username" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                        <input type="text" placeholder="Enter your Email" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">password</label>
                     <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
                         <i class="ri-lock-password-line text-rose-400/90"></i>
-                        <input type="password" placeholder="Enter your username" required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                        <input type="password" placeholder="Enter your Password" min="6" required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                    </div>
+                </div>
+                <div>
+                    <label class="font-semibold mb-2 capitalize block ml-1" for="username">confirm password</label>
+                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
+                        <i class="ri-lock-password-line text-rose-400/90"></i>
+                        <input type="password" placeholder="Enter your Confirm Password" min="6" required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
@@ -27,15 +42,10 @@
                     </div>
                 </div>
                 <div>
-                    <div class="flex justify-between text-xs">
+                    <div class="text-xs cursor-pointer hover:underline" @click="toggleAuthPage()">
                         <div class="capitalize">
                             <p>
-                                forget password
-                            </p>
-                        </div>
-                        <div class="capitalize cursor-pointer hover:underline select-none" @click="toggleAuthPage()">
-                            <p>
-                                i don't have an account
+                                i have an account
                             </p>
                         </div>
                     </div>
@@ -53,11 +63,17 @@
 </template>
 
 <script setup>
-  
-    
+import { ref } from 'vue';
+
+
     const emit = defineEmits(['toggleAuthPage'])
-    const toggleAuthPage = async() =>{
-       await emit('toggleAuthPage')
-    } 
-    
+    const toggleAuthPage = async () =>{
+        await emit('toggleAuthPage')
+    }
+
+    const form = ref({
+        email: '',
+        fullname: '',
+        password: ''
+    })
 </script>

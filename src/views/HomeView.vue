@@ -1,4 +1,13 @@
 <script setup>
+import { ref } from 'vue';
+import Login from '../components/Auth/Login.vue';
+import Register from '../components/Auth/Register.vue';
+
+ const toggleAuth = ref(false)
+const toggleAuthPage = async()=>{
+   toggleAuth.value = !toggleAuth.value
+   console.log(toggleAuth.value)
+}
 
 </script>
 
@@ -21,7 +30,8 @@
             </div>
           </div>
           <div>
-            
+            <Register v-if="toggleAuth" @toggleAuthPage="toggleAuthPage()" />
+            <Login v-else @toggleAuthPage="toggleAuthPage()"  />
           </div>
         </div>
       </div>
