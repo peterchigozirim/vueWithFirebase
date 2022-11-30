@@ -21,23 +21,7 @@
             </div>
           </div>
           <div>
-            <div class="w-9/12 rounded mx-auto backdrop-blur-md space-y-6 bg-white/10 px-12 py-4">
-              <div>
-                <div class="text-3xl font-bold text-center font-FiraSans">
-                  <p>Sign <span class="border-b ">In</span></p>
-                </div>
-              </div>
-              <div>
-                <form action="">
-                  <div>
-                    <label class="font-semibold mb-2 capitalize block " for="username">username</label>
-                    <div class="bg-white/20 rounded-full w-full h-10">
-                      <input type="text" placeholder="Enter your username" class="w-full text-sm h-full focus:outline-none focus:ring-0 px-3 bg-transparent">
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
