@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import { AuthStore } from '@/stores/AuthStore'
 
   const storeAuth = AuthStore()

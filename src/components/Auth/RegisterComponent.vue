@@ -1,5 +1,5 @@
 <template>
-    <div class="w-9/12 rounded mx-auto backdrop-blur-md space-y-6 bg-white/10 px-12 py-4">
+    <div class="w-11/12 md:w-9/12 rounded mx-auto backdrop-blur-md space-y-6 bg-white/10 px-4 md:px-12 py-4">
         <div>
             <div class="text-3xl font-bold text-center font-FiraSans">
                 <p>Sign <span class="border-b ">Up</span></p>
@@ -7,33 +7,26 @@
         </div>
         <div>
             <form @submit.prevent="submit()" class="space-y-4">
-                <!-- <div>
-                    <label class="font-semibold mb-2 capitalize block ml-1" for="username">Full Name</label>
-                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
-                        <i class="ri-account-circle-line text-rose-400/90"></i>
-                        <input type="text" v-model="form.fullname" placeholder="Enter your Full Name" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
-                    </div>
-                </div> -->
 
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">Email</label>
-                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
-                        <i class="ri-account-circle-line text-rose-400/90"></i>
-                        <input type="email" v-model="form.email" placeholder="Enter your Email" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center pl-2 overflow-hidden text-gray-200">
+                        <i class="ri-account-circle-line text-rose-400/90 mr-1"></i>
+                        <input type="email" v-model="form.email" placeholder="Enter your Email" autocomplete="email" autofocus required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">password</label>
-                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
-                        <i class="ri-lock-password-line text-rose-400/90"></i>
-                        <input type="password" v-model="form.password" placeholder="Enter your Password"  required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center pl-2 text-gray-200 overflow-hidden">
+                        <i class="ri-lock-password-line text-rose-400/90 mr-1"></i>
+                        <input type="password" v-model="form.password" placeholder="Enter your Password" autocomplete="new-password" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                 </div>
                 <div>
                     <label class="font-semibold mb-2 capitalize block ml-1" for="username">confirm password</label>
-                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center px-2 text-gray-200">
-                        <i class="ri-lock-password-line text-rose-400/90"></i>
-                        <input type="password" v-model="form.cpassword" placeholder="Enter your Confirm Password"  required class="w-full form-input text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
+                    <div class="bg-white/10 rounded-full w-full h-10 flex items-center pl-2 text-gray-200 overflow-hidden">
+                        <i class="ri-lock-password-line text-rose-400/90 mr-1"></i>
+                        <input type="password" v-model="form.cpassword" placeholder="Confirm Password" required class="w-full text-sm h-full focus:outline-none focus:ring-0 pl-2 bg-transparent">
                     </div>
                     <span v-if="passError" class="text-xs text-red-500 font-semibold">*Password do not match</span>
                    
@@ -50,9 +43,6 @@
                                 i have an account
                             </p>
                         </div>
-                        <div class="w-full">
-                        <button type="button" @click="logOut()" v-if="store.user != null" class="flex w-full h-10 rounded-full bg-gradient-to-r from-rose-500 to-purple-900 transition-all hover:to-rose-500 hover:from-purple-600 backdrop-blur items-center justify-center">log-out</button>
-                    </div>
                     </div>
                 </div>
                 <div>
@@ -103,9 +93,5 @@ import { AuthStore } from '@/stores/AuthStore'
             loader.value = true
             store.registerUser(form.value)
         }
-    }
-
-    const logOut = ()=>{
-        store.signoutUser()
     }
 </script>

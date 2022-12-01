@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/config/firebase'
+// import {useRouter} from 'vue-router'
+// const router = useRouter();
 
 export const AuthStore = defineStore('storeAuth', {
     state: () => {
@@ -14,8 +16,9 @@ export const AuthStore = defineStore('storeAuth', {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                   this.user = user
+                  this.router.push( { name: 'home'})
                 } else {
-                    console.log('User is signed out');
+                    this.router.push({name: 'auth'});
                 }
               });
         },
@@ -23,7 +26,7 @@ export const AuthStore = defineStore('storeAuth', {
             createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
                 this.user = userCredential.user;
-                console.log(userCredential.user);
+                this.router.push( { name: 'home'} )
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -38,7 +41,7 @@ export const AuthStore = defineStore('storeAuth', {
         signoutUser(){
             signOut(auth).then(() => {
                 this.user = null
-                console.log('user sign out');
+                this.router.push( { name: 'auth'})
             }).catch((error) => {
                 console.log(error)
             });
@@ -46,10 +49,8 @@ export const AuthStore = defineStore('storeAuth', {
         loginUser(data){
             signInWithEmailAndPassword(auth, data.email, data.password)
                 .then((userCredential) => {
-                    // Signed in 
                     this.user = userCredential.user;
-                    console.log(userCredential.user);
-                    // ...
+                    this.router.push( { name: 'home'})
                 })
                 .catch((error) => {
                     console.log(error.message);
