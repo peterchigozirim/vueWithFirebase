@@ -1,6 +1,7 @@
-# vueWithFirebase
+# VueWithFirebase
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue athenication with firebase
+Tailwind css
 
 ## Recommended IDE Setup
 
@@ -33,3 +34,11 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### FireBase
+```sh
+npm install firebase
+```
+
+### Compile and Hot-Reload for Development
+
