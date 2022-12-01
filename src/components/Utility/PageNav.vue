@@ -1,6 +1,13 @@
 <template>
     <div class="w-full bg-[#26041d] h-12 ">
         <div class="w-11/12 h-full mx-auto text-white/70 flex justify-between items-center">
+            <div class="md:hidden">
+                <div class="space-y-1  transition-all duration-500" @click="toggleNav()">
+                    <div class="w-6 h-1 bg-white/50 transition-all duration-500"></div>
+                    <div :class="openNav? 'ml-auto' : 'mr-auto'" class="w-4 h-1 transition-all duration-1000 bg-white/50"></div>
+                    <div :class="openNav? 'ml-auto' : 'mr-auto'" class="w-2 h-1 transition-all duration-1000 delay-500 bg-white/50"></div>
+                </div>
+            </div>
             <div>
                 <p>Page name</p>
             </div>
@@ -57,6 +64,14 @@
     const logOut = ()=>{
         loader.value = true
         store.signoutUser()
+    }
+    const emit = defineEmits(['checkNav'])
+    // defineProps({
+    //     openNav: Boolean
+    // })
+    const toggleNav = () =>  {
+        openProfile.value = false
+        emit('checkNav')
     }
     window.addEventListener('scroll', handleScroll())
 </script>

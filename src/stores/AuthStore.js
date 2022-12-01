@@ -8,7 +8,8 @@ export const AuthStore = defineStore('storeAuth', {
     state: () => {
         return{
             user: null,
-            errors: null
+            errors: null,
+            loader: false
         }
     },
     actions:{
@@ -16,19 +17,25 @@ export const AuthStore = defineStore('storeAuth', {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                   this.user = user
-                  this.router.push( { name: 'home'})
+                    this.loader = true
+                  setTimeout(() => {
+                    this.router.push( { name: 'home'})
+                  }, 1000);
                 } else {
+                    this.loader = true
                     this.router.push({name: 'auth'});
                 }
               });
         },
         registerUser(data){
+            this.loader = true
             createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
                 this.user = userCredential.user;
                 this.router.push( { name: 'home'} )
             })
             .catch((error) => {
+                this.loader = false
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 this.errors = {
@@ -42,17 +49,20 @@ export const AuthStore = defineStore('storeAuth', {
             signOut(auth).then(() => {
                 this.user = null
                 this.router.push( { name: 'auth'})
+                this.loader = false
             }).catch((error) => {
                 console.log(error)
             });
         },
         loginUser(data){
+            this.loader = true
             signInWithEmailAndPassword(auth, data.email, data.password)
                 .then((userCredential) => {
                     this.user = userCredential.user;
                     this.router.push( { name: 'home'})
                 })
                 .catch((error) => {
+                    this.loader = false
                     console.log(error.message);
                 });
         }

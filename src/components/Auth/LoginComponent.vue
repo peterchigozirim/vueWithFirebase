@@ -51,7 +51,7 @@
         </div>
         
     </div>
-    <div v-if="loader" class="fixed top-0 left-0 h-screen w-screen flex z-50 bg-purple-800/20 backdrop-blur-md">
+    <div v-if="store.loader" class="fixed top-0 left-0 h-screen w-screen flex z-50 bg-purple-800/20 backdrop-blur-md">
         <div class="m-auto filter-none blur-none z-10">
             <img src="/images/loader/loader.svg" alt="">
         </div>
@@ -73,9 +73,7 @@ import { AuthStore } from '@/stores/AuthStore'
         email: '',
         password: ''
     })
-    const loader = ref(false)
     const submit = ()=>{
-        loader.value = true
         store.loginUser(form.value)
     }
     

@@ -55,7 +55,7 @@
             </form>
         </div>
     </div>
-    <div v-if="loader" class="fixed top-0 left-0 h-screen w-full flex z-50 bg-purple-800/20 backdrop-blur-md">
+    <div v-if="store.loader" class="fixed top-0 left-0 h-screen w-full flex z-50 bg-purple-800/20 backdrop-blur-md">
         <div class="m-auto filter-none blur-none z-10">
             <img src="/images/loader/loader.svg" alt="">
         </div>
@@ -73,7 +73,6 @@ import { AuthStore } from '@/stores/AuthStore'
     const toggleAuthPage = async() =>{
         await emit('toggleAuthPage')
     }
-    const loader = ref(false)
     const form = ref({
         email: '',
         fullname: '',
@@ -81,16 +80,12 @@ import { AuthStore } from '@/stores/AuthStore'
         cpassword: ''
     })
 
-    if (store.errors != null) {
-        loader.value = false
-    }
 
     const passError = ref(false)
     const submit = ()=>{
         if (form.value.password != form.value.cpassword) {
             return passError.value = true
         }else{
-            loader.value = true
             store.registerUser(form.value)
         }
     }

@@ -8,7 +8,9 @@ import AuthLayout from '../components/Layout/AuthLayout.vue';
 <template>
   <main>
     <AuthLayout>
-
+      <div class="pl-1">
+      jdkfdkfdk
+      </div>
     </AuthLayout>
   </main>
 </template>
