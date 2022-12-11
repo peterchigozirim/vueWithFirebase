@@ -15,14 +15,15 @@ export const AuthStore = defineStore('storeAuth', {
     actions:{
         init(){
             onAuthStateChanged(auth, (user) => {
+                this.loader = true
                 if (user) {
                   this.user = user
-                    this.loader = true
+                    this.loader = false
                   setTimeout(() => {
                     this.router.push( { name: 'home'})
                   }, 1000);
                 } else {
-                    this.loader = true
+                    this.loader = false
                     this.router.push({name: 'auth'});
                 }
               });
@@ -65,6 +66,7 @@ export const AuthStore = defineStore('storeAuth', {
                     this.loader = false
                     console.log(error.message);
                 });
-        }
+        },
+        
     }
 })
